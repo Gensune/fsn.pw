@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>fsn.pw -- URL Shortener</title>
+  <link rel="stylesheet" href="https://jenil.github.io/bulmaswatch/nuclear/bulmaswatch.min.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <section class="hero is-small is-light is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          fsn.pw
+        </h1>
+        <h2 class="subtitle">
+          Shortening URLs for your pleasure
+        </h2>
+      </div>
+    </div>
+  </section>
+  <main id='app'>
+    <form @submit.prevent="createUrl()">
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Enter URL</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input v-model="url" class="input is-large" type="url" placeholder="https://example.com" required>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Short Name</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input v-model="slug" class="input is-large" type="text" placeholder="(This is optional)">
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="short-btn">
+        <button type="submit" class="button is-large is-success is-rounded">Shorten Me</button>
+      </div>
+    </form>
+  </main>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

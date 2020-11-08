@@ -1,0 +1,11 @@
+*{
+  color: aliceblue;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+main {
+  width: 80%;
+  margin: 2em auto 0 auto;
+}
+.short-btn{
+  text-align: center;
+}

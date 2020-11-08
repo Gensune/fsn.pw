@@ -1,0 +1,44 @@
+const db = require('./connection');
+const yup = require('yup');
+const { nanoid } = require('nanoid');
+
+const urls = db.get('urls');
+
+const schema = yup.object().shape({
+  slug: yup.string().trim().matches(/[\w\-]/i),
+  url: yup.string().trim().url().required(),
+});
+
+async function create(req) {
+  let slug = req.slug;
+  let url = req.url;
+  try {
+    await schema.validate({
+      slug,
+      url,
+    });
+
+    if(!slug){
+      slug = nanoid(5);
+    }else{
+      const inUse = await urls.findOne({slug});
+      if(inUse){
+        throw new Error();
+      }
+    }
+    slug = slug.toLowerCase();
+
+    const newUrl = {
+      url,
+      slug,
+    };
+    const created = await urls.insert(newUrl);
+    return created;
+  } catch (error) {
+    return null;
+  }
+}
+
+module.exports = {
+  create,
+}
