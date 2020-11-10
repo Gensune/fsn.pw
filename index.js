@@ -8,13 +8,23 @@ const helmet = require('helmet');
 const urls = require('./db/urls');
 
 const app = express();
+const port = process.env.PORT || 1337;
+
+// Set Content Security Policies
+const scriptSources = ["'self'", "'unsafe-inline'", "'unsafe-eval'"];
+const styleSources = ["'self'", "'unsafe-inline'"];
+const connectSources = ["'self'"];
 
 app.use(
   helmet.contentSecurityPolicy({
-    directives: {
-      ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-      "script-src": 'unsafe-eval',
-    },
+    defaultSrc: ["'self'"],
+    scriptSrc: scriptSources,
+    scriptSrcElem: scriptSources,
+    styleSrc: styleSources,
+    connectSrc: connectSources,
+    reportUri: '/report-violation',
+    reportOnly: false,
+    safari5: false  
   })
 );
 app.use(helmet({
@@ -51,7 +61,6 @@ app.use((error, req, res, next) => {
   });
 });
 
-const port = process.env.PORT || 1337;
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
   console.log(urls);
