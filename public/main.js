@@ -1,18 +1,37 @@
+import { response } from 'express';
 import { createApp, ref } from './src/vue.esm-browser.js';
 
 const slug = ref('');
 const url = ref('');
+const success = ref(false);
 
 createApp({
- setup() {
-   const createUrl = () => {
-     console.log(slug.value, url.value);
-   };
+  setup() {
+    const createUrl = () => {
+      const body = {
+        slug: this.slug.value,
+        url: this.url.value
+      };
 
-   return {
-     slug,
-     url,
-     createUrl
-   };
- }
+      fetch('/api/slug', {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+          'content-type': 'application/json'
+        }
+      }).then(response => {
+        console.log(response);
+        return response.json();
+      }).then(result => {
+        console.log(result);
+      });
+    };
+
+    return {
+      slug,
+      url,
+      createUrl,
+      success
+    };
+  }
 }).mount('#app');
