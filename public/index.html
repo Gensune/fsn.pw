@@ -20,8 +20,8 @@
       </div>
     </div>
   </section>
-  <main id='app'>
-    <form @submit.prevent="createUrl()">
+  <main v-cloak id='app'>
+    <form @submit.prevent="createUrl">
       <div class="field is-horizontal">
         <div class="field-label is-normal">
           <label class="label">Enter URL</label>

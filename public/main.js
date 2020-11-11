@@ -1,15 +1,18 @@
-import * as Vue from './src/vue.esm-browser.js';
+import { createApp, ref } from './src/vue.esm-browser.js';
 
-const App = Vue.createApp({
-  data() {
-    return {
-      slug,
-      url
-    }
-  },
-  methods: {
-    createUrl() {
-      console.log(this.slug, this.url);
-    }
-  }
+const slug = ref('');
+const url = ref('');
+
+createApp({
+ setup() {
+   const createUrl = () => {
+     console.log(slug.value, url.value);
+   };
+
+   return {
+     slug,
+     url,
+     createUrl
+   };
+ }
 }).mount('#app');

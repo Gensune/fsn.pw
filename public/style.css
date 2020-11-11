@@ -9,3 +9,6 @@ main {
 .short-btn{
   text-align: center;
 }
+[v-cloak] {
+  display: none;
+}
