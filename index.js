@@ -17,14 +17,16 @@ const connectSources = ["'self'"];
 
 app.use(
   helmet.contentSecurityPolicy({
-    defaultSrc: ["'self'"],
-    scriptSrc: scriptSources,
-    scriptSrcElem: scriptSources,
-    styleSrc: styleSources,
-    connectSrc: connectSources,
-    reportUri: '/report-violation',
-    reportOnly: false,
-    safari5: false  
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: scriptSources,
+      scriptSrcElem: scriptSources,
+      styleSrc: styleSources,
+      connectSrc: connectSources,
+      reportUri: '/report-violation',
+      reportOnly: false,
+      safari5: false
+    },
   })
 );
 app.use(helmet({
