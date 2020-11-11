@@ -1,9 +1,7 @@
-import { response } from 'express';
 import { createApp, ref } from './src/vue.esm-browser.js';
 
 const slug = ref('');
 const url = ref('');
-const success = ref(false);
 
 createApp({
   setup() {
@@ -30,8 +28,7 @@ createApp({
     return {
       slug,
       url,
-      createUrl,
-      success
+      createUrl
     };
   }
 }).mount('#app');

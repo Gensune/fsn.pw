@@ -21,7 +21,7 @@
     </div>
   </section>
   <main v-cloak id='app'>
-    <form v-if="!success" @submit.prevent="createUrl">
+    <form @submit.prevent="createUrl">
       <div class="field is-horizontal">
         <div class="field-label is-normal">
           <label class="label">Enter URL</label>
@@ -50,7 +50,6 @@
         <button type="submit" class="button is-large is-success is-rounded">Shorten Me</button>
       </div>
     </form>
-    <h1 v-if="success" class="title is-1"><a :href="'/' + slug">fsn.pw/{{slug}}</a></h1>
   </main>
   <script type="module" src="./main.js"></script>
 </body>
