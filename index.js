@@ -11,20 +11,20 @@ const app = express();
 const port = process.env.PORT || 1337;
 
 // Set Content Security Policies
-const scriptSources = ["'self'", "'unsafe-inline'", "'unsafe-eval'"];
-const styleSources = ["'self'", "'unsafe-inline'"];
+const scriptSources = ["'strict-dynamic'","'nonce-ptRfcq'","'unsafe-inline'","'unsafe-eval'","'self'"];
+const styleSources = ["fonts.googleapis.com","'nonce-EqI99P'","'self'"];
 const connectSources = ["'self'"];
 
 app.use(
   helmet.contentSecurityPolicy({
-    defaultSrc: ["'self'"],
-    scriptSrc: scriptSources,
-    scriptSrcElem: scriptSources,
-    styleSrc: styleSources,
-    connectSrc: connectSources,
-    reportUri: '/report-violation',
-    reportOnly: false,
-    safari5: false
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: scriptSources,
+      scriptSrcElem: scriptSources,
+      styleSrc: styleSources,
+      fontSrc: ["fonts.gstatic.com"],
+      connectSrc: connectSources
+    },
   })
 );
 app.use(helmet({
