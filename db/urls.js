@@ -13,11 +13,17 @@ async function create(req) {
   let slug = req.slug;
   let url = req.url;
   try {
-    await schema.validate({
-      slug,
-      url,
-    });
-
+    if(slug){
+      await schema.validate({
+        slug,
+        url,
+      });
+    }else{
+      await schema.validate({
+        url,
+      });
+    }
+    
     if(!slug){
       slug = nanoid(5);
     }else{
