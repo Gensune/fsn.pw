@@ -1,4 +1,4 @@
-require('dotenv').config();
+if(process.env.NODE_ENV != 'production'){require('dotenv').config();}
 
 const express = require('express');
 const cors = require('cors');
@@ -44,6 +44,22 @@ app.post('/api/slug', async (req, res, next)=>{
     }
     res.json(url);
   } catch (error) {
+    next(error);
+  }
+});
+
+app.get('/:short', async (req, res, next) =>{
+  const short = req.params.short;
+
+  try {
+    const url = await urls.getURL(short);
+    if(url === null){
+      res.redirect('https://fsn.pw');
+      throw new Error('No short urls has been made with '+ short);
+    }else{
+      res.redirect(url);
+    }
+  }catch (error){
     next(error);
   }
 });

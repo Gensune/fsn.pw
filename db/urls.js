@@ -45,6 +45,20 @@ async function create(req) {
   }
 }
 
+async function getURL(req) {
+  req = req.toLowerCase();
+  try {
+    const site = await urls.find({slug: req});
+    if(!site){
+      throw new Error();
+    }else {
+      return site[0].url;
+    }
+  }catch (error) {
+    return null;
+  }
+}
+
 module.exports = {
-  create,
+  create, getURL,
 }

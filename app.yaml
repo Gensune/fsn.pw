@@ -1,0 +1,3 @@
+runtime: nodejs18
+env_variables:
+  MONGODB_URI: "mongodb+srv://fsnpw:dbkonaashes5948@fsn-pw.bzdfe.mongodb.net"
