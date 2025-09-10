@@ -1,6 +1,6 @@
-const db = require('./connection');
-const yup = require('yup');
-const { nanoid } = require('nanoid');
+import db from './connection.js';
+import yup from 'yup';
+import { nanoid } from 'nanoid';
 
 const urls = db.get('urls');
 
@@ -29,7 +29,7 @@ async function create(req) {
     }else{
       const inUse = await urls.findOne({slug});
       if(inUse){
-        throw new Error();
+        throw new Error('Slug in use.');
       }
     }
     slug = slug.toLowerCase();
@@ -59,6 +59,6 @@ async function getURL(req) {
   }
 }
 
-module.exports = {
+export default {
   create, getURL,
 }

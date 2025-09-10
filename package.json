@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
@@ -13,13 +14,14 @@
   "dependencies": {
     "assert": "^2.0.0",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^4.2.0",
     "monk": "^7.3.2",
     "morgan": "^1.10.0",
     "nanoid": "^3.1.16",
-    "yup": "^0.29.3",
-    "dotenv": "^8.2.0"
-  },
-  "devDependencies": {}
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "yup": "^0.29.3"
+  }
 }

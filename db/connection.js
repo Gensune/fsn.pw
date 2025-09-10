@@ -1,8 +1,8 @@
-if(process.env.NODE_ENV != 'production'){require('dotenv').config();}
+import { config } from '../config.js'
 
-const monk = require('monk');
-const uri = process.env.MONGODB_URI;
+import monk from 'monk';
+const uri = config.mongoUri;
 
 const db = monk(uri);
 
-module.exports = db;
+export default db;
